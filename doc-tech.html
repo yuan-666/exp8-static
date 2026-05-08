@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技术文档 - 校园活动管理系统</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .doc-content h3 {
+      color: var(--primary);
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-50);
+    }
+    .doc-content h4 {
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .doc-content code {
+      background: var(--primary-50);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--primary-dark);
+    }
+    .doc-content pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+    .doc-content pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    .doc-content ul, .doc-content ol {
+      padding-left: 1.5rem;
+    }
+    .doc-content li {
+      margin-bottom: 0.3rem;
+    }
+    .arch-box {
+      border: 2px solid var(--primary-50);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-50);
+    }
+    .arch-arrow {
+      text-align: center;
+      font-size: 1.5rem;
+      color: var(--primary);
+      padding: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="main-nav"></div>
+
+  <div class="container py-5" style="margin-top:80px">
+    <div class="row g-4">
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+        <div class="doc-sidebar glass-card p-3">
+          <h6 class="fw-bold text-primary mb-3 px-1"><i class="bi bi-list-nested me-2"></i>目录</h6>
+          <nav class="nav flex-column" id="docNav">
+            <a class="nav-link active" href="#sec-bg">项目背景</a>
+            <a class="nav-link" href="#sec-course">课程知识应用</a>
+            <a class="nav-link" href="#sec-arch">技术架构</a>
+            <a class="nav-link" href="#sec-source">源码结构剖析</a>
+            <a class="nav-link" href="#sec-concurrent">并发与难点</a>
+            <a class="nav-link" href="#sec-db">数据库设计</a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="col-lg-9 doc-content">
+        <h2 class="section-title"><i class="bi bi-file-earmark-code text-primary me-2"></i>技术文档</h2>
+
+        <!-- Section 1: Project Background -->
+        <section id="sec-bg">
+          <h3><i class="bi bi-info-circle me-2"></i>项目背景</h3>
+          <p>校园活动管理系统旨在为高校师生提供便捷的校园活动发布、浏览与报名平台。传统方式下，校园活动信息通过海报、QQ群等分散渠道传播，存在信息不对称、报名流程繁琐、管理效率低等问题。</p>
+          <p>本系统通过 Web 应用集中管理活动信息，实现活动的在线发布、搜索、报名与统计，有效提升校园活动的组织效率和参与体验。</p>
+
+          <h4>核心目标</h4>
+          <ul>
+            <li>提供直观的活动浏览与搜索体验</li>
+            <li>简化报名流程，一键报名/取消</li>
+            <li>管理员高效管理活动与报名人员</li>
+            <li>响应式设计，多终端适配</li>
+            <li>纯静态部署，零服务器成本</li>
+          </ul>
+
+          <h4>技术选型理由</h4>
+          <ul>
+            <li><strong>HTML/CSS/JS</strong>：无构建依赖，直接部署至 GitHub Pages</li>
+            <li><strong>Bootstrap 5.3</strong>：成熟的响应式框架，快速构建 UI</li>
+            <li><strong>localStorage</strong>：浏览器本地存储，模拟后端数据持久化</li>
+            <li><strong>Glassmorphism</strong>：现代设计风格，提升视觉层次感</li>
+          </ul>
+        </section>
+
+        <!-- Section 2: Course Knowledge -->
+        <section id="sec-course">
+          <h3><i class="bi bi-mortarboard me-2"></i>课程知识应用</h3>
+          <p>本项目综合运用了 Web 开发课程的核心知识点：</p>
+
+          <h4>HTML5 语义化</h4>
+          <ul>
+            <li>使用 <code>&lt;header&gt;</code>、<code>&lt;nav&gt;</code>、<code>&lt;section&gt;</code>、<code>&lt;footer&gt;</code> 等语义标签</li>
+            <li>表单验证：<code>required</code>、<code>type="email"</code>、<code>min</code> 等原生属性</li>
+            <li>ARIA 属性增强无障碍访问</li>
+          </ul>
+
+          <h4>CSS3 现代特性</h4>
+          <ul>
+            <li><strong>CSS 变量</strong>：<code>--primary</code>、<code>--glass-bg</code> 等，实现主题一致性</li>
+            <li><strong>Flexbox & Grid</strong>：Bootstrap 栅格 + 自定义 Flex 布局</li>
+            <li><strong>backdrop-filter</strong>：实现毛玻璃效果</li>
+            <li><strong>CSS 渐变</strong>：<code>linear-gradient(135deg, #6366f1, #8b5cf6)</code></li>
+            <li><strong>过渡与动画</strong>：<code>transition</code>、<code>@keyframes</code> 动画</li>
+            <li><strong>响应式设计</strong>：<code>@media</code> 查询与 Bootstrap 断点</li>
+          </ul>
+
+          <h4>JavaScript ES6+</h4>
+          <ul>
+            <li><strong>模板字面量</strong>：动态 HTML 生成</li>
+            <li><strong>箭头函数</strong>：简洁的回调语法</li>
+            <li><strong>解构赋值</strong>：对象与数组解构</li>
+            <li><strong>localStorage API</strong>：数据持久化</li>
+            <li><strong>URLSearchParams</strong>：URL 参数解析</li>
+            <li><strong>Event Delegation</strong>：高效事件处理</li>
+          </ul>
+        </section>
+
+        <!-- Section 3: Architecture -->
+        <section id="sec-arch">
+          <h3><i class="bi bi-diagram-3 me-2"></i>技术架构</h3>
+          <p>系统采用纯前端架构，所有逻辑在浏览器端执行：</p>
+
+          <div class="row g-2 my-3">
+            <div class="col-12"><div class="arch-box">用户浏览器</div></div>
+            <div class="col-12"><div class="arch-arrow"><i class="bi bi-arrow-down-up"></i></div></div>
+            <div class="col-md-4"><div class="arch-box">HTML 页面层<br><small class="fw-normal">8 个独立页面</small></div></div>
+            <div class="col-md-4"><div class="arch-box">CSS 样式层<br><small class="fw-normal">style.css + Bootstrap</small></div></div>
+            <div class="col-md-4"><div class="arch-box">JS 逻辑层<br><small class="fw-normal">app.js + mock-data.js</small></div></div>
+            <div class="col-12"><div class="arch-arrow"><i class="bi bi-arrow-down-up"></i></div></div>
+            <div class="col-12"><div class="arch-box">localStorage 数据层<br><small class="fw-normal">activities / users / registrations</small></div></div>
+          </div>
+
+          <h4>数据流</h4>
+          <pre><code>用户操作 → JavaScript 事件处理 → 修改 localStorage → 重新渲染 DOM
+   ↑                                                          ↓
+   └────────────── 页面刷新/切换时读取 localStorage ←────────────┘</code></pre>
+
+          <h4>模块划分</h4>
+          <ul>
+            <li><strong>mock-data.js</strong>：数据模型、初始数据、CRUD 操作函数</li>
+            <li><strong>app.js</strong>：导航栏、底部栏渲染、认证、工具函数</li>
+            <li><strong>style.css</strong>：CSS 变量、Glassmorphism 组件、响应式规则</li>
+            <li><strong>各 HTML 页面</strong>：页面级逻辑（搜索、排序、表单等）</li>
+          </ul>
+        </section>
+
+        <!-- Section 4: Source Code Structure -->
+        <section id="sec-source">
+          <h3><i class="bi bi-code-slash me-2"></i>源码结构剖析</h3>
+
+          <pre><code>exp8-static/
+├── index.html              # 活动列表主页
+├── login.html              # 登录页
+├── register.html           # 注册页
+├── activity-detail.html    # 活动详情页
+├── activity-form.html      # 活动 创建/编辑 表单
+├── profile.html            # 个人中心
+├── doc-devlog.html         # 开发日志
+├── doc-tech.html           # 技术文档（本页）
+├── css/
+│   └── style.css           # 全局样式
+└── js/
+    ├── mock-data.js        # 模拟数据与 CRUD
+    └── app.js              # 共享逻辑</code></pre>
+
+          <h4>关键实现细节</h4>
+          <ul>
+            <li><strong>认证流程</strong>：登录时将用户对象存入 <code>localStorage.currentUser</code>，页面加载时检查该值决定跳转</li>
+            <li><strong>权限控制</strong>：<code>requireAuth()</code> 和 <code>requireAdmin()</code> 在页面初始化时调用，未授权自动跳转</li>
+            <li><strong>导航栏渲染</strong>：每个页面通过 <code>renderNavbar()</code> 动态生成，根据登录状态和角色显示不同内容</li>
+            <li><strong>活动报名</strong>：通过 <code>registerForActivity()</code> 修改 registrations 数组，实时更新进度条</li>
+            <li><strong>搜索排序</strong>：前端过滤和排序，<code>Array.filter()</code> + <code>Array.sort()</code></li>
+          </ul>
+        </section>
+
+        <!-- Section 5: Concurrency & Challenges -->
+        <section id="sec-concurrent">
+          <h3><i class="bi bi-bug me-2"></i>并发与难点</h3>
+
+          <h4>数据一致性问题</h4>
+          <p>由于使用 localStorage 存储数据，在多标签页同时操作时可能出现数据不一致：</p>
+          <ul>
+            <li><strong>问题</strong>：标签页 A 报名后，标签页 B 的数据未更新</li>
+            <li><strong>解决方案</strong>：监听 <code>storage</code> 事件，当其他标签页修改 localStorage 时触发数据刷新</li>
+          </ul>
+          <pre><code>window.addEventListener('storage', function(e) {
+  if (e.key === 'activities' || e.key === 'registrations') {
+    renderActivities(); // 重新渲染
+  }
+});</code></pre>
+
+          <h4>报名名额竞争</h4>
+          <p>在名额有限的情况下，并发报名可能导致超额：</p>
+          <ul>
+            <li><strong>问题</strong>：多个请求同时读取剩余名额，均判断可报名</li>
+            <li><strong>解决方案</strong>：前端使用乐观锁机制——报名前重新读取最新数据，写入前再次校验</li>
+          </ul>
+          <pre><code>function registerForActivity(userId, activityId) {
+  const regs = getRegistrations();        // 读取最新数据
+  const activity = getActivityById(activityId);
+  const count = getParticipantCount(activityId);
+  if (count >= activity.maxParticipants)   // 再次校验
+    return false;
+  // ... 写入
+}</code></pre>
+
+          <h4>其他技术难点</h4>
+          <ul>
+            <li><strong>毛玻璃兼容性</strong>：<code>backdrop-filter</code> 在旧浏览器不支持，添加 <code>-webkit-</code> 前缀和降级背景色</li>
+            <li><strong>图片占位</strong>：使用 picsum.photos 随机图片，需处理加载失败的情况</li>
+            <li><strong>表单验证</strong>：HTML5 原生验证 + JS 自定义验证，双重保障</li>
+            <li><strong>SEO 优化</strong>：静态页面无 SSR，通过语义化 HTML 和 meta 标签弥补</li>
+          </ul>
+        </section>
+
+        <!-- Section 6: Database Design -->
+        <section id="sec-db">
+          <h3><i class="bi bi-database me-2"></i>数据库设计</h3>
+          <p>系统使用 localStorage 模拟关系型数据库，共 3 张表：</p>
+
+          <h4>用户表 (users)</h4>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered member-table">
+              <thead class="table-light">
+                <tr><th>字段</th><th>类型</th><th>说明</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>id</code></td><td>Number</td><td>主键，自增</td></tr>
+                <tr><td><code>username</code></td><td>String</td><td>用户名，唯一</td></tr>
+                <tr><td><code>password</code></td><td>String</td><td>密码（明文存储，仅演示）</td></tr>
+                <tr><td><code>nickname</code></td><td>String</td><td>昵称</td></tr>
+                <tr><td><code>phone</code></td><td>String</td><td>手机号</td></tr>
+                <tr><td><code>role</code></td><td>Number</td><td>角色：0=学生，1=管理员</td></tr>
+                <tr><td><code>avatar</code></td><td>String</td><td>头像 URL</td></tr>
+                <tr><td><code>createdAt</code></td><td>String</td><td>注册时间</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>活动表 (activities)</h4>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered member-table">
+              <thead class="table-light">
+                <tr><th>字段</th><th>类型</th><th>说明</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>id</code></td><td>Number</td><td>主键，自增</td></tr>
+                <tr><td><code>title</code></td><td>String</td><td>活动标题</td></tr>
+                <tr><td><code>description</code></td><td>String</td><td>活动描述</td></tr>
+                <tr><td><code>location</code></td><td>String</td><td>活动地点</td></tr>
+                <tr><td><code>startTime</code></td><td>String</td><td>开始时间</td></tr>
+                <tr><td><code>endTime</code></td><td>String</td><td>结束时间</td></tr>
+                <tr><td><code>image</code></td><td>String</td><td>封面图 URL</td></tr>
+                <tr><td><code>maxParticipants</code></td><td>Number</td><td>最大人数</td></tr>
+                <tr><td><code>contact</code></td><td>String</td><td>联系方式</td></tr>
+                <tr><td><code>status</code></td><td>String</td><td>状态：upcoming/full/ended</td></tr>
+                <tr><td><code>createdAt</code></td><td>String</td><td>发布时间</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>报名记录表 (registrations)</h4>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered member-table">
+              <thead class="table-light">
+                <tr><th>字段</th><th>类型</th><th>说明</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>id</code></td><td>Number</td><td>主键，自增</td></tr>
+                <tr><td><code>userId</code></td><td>Number</td><td>外键 → users.id</td></tr>
+                <tr><td><code>activityId</code></td><td>Number</td><td>外键 → activities.id</td></tr>
+                <tr><td><code>registeredAt</code></td><td>String</td><td>报名时间</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>ER 关系</h4>
+          <pre><code>users  1 ──── N  registrations  N ──── 1  activities
+ (用户)     (报名)     (一对多)    (报名)     (活动)
+
+一个用户可以报名多个活动 (1:N)
+一个活动可以被多个用户报名 (1:N)
+用户与活动通过 registrations 表实现多对多关系</code></pre>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div id="main-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Scroll spy for doc sidebar
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('.doc-content section[id]');
+      const navLinks = document.querySelectorAll('#docNav .nav-link');
+
+      function onScroll() {
+        let current = '';
+        sections.forEach(function(section) {
+          const sectionTop = section.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(function(link) {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    });
+  </script>
+</body>
+</html>
